@@ -16,7 +16,7 @@
 
         @font-face {
             font-family: 'PP Neue Montreal';
-            src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
+            src: url('https://assets.website-fields.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
             font-weight: 500;
             font-display: swap;
         }
@@ -380,47 +380,53 @@
         // =============================================
         // BOTTOM NAV VISIBILITY CONTROLLER
         // Hides when "Partner With Us" or Footer is visible
+        // Re-appears when user scrolls up and they are no longer visible
         // =============================================
         const bottomNav = document.getElementById('bottom-nav');
         const partnerSection = document.getElementById('partner-section');
         const footerSection = document.getElementById('footer-section');
         const copyrightSection = document.getElementById('copyright-section');
 
-        let navShouldBeHidden = false;
+        let lastScrollY = window.scrollY;
+        let ticking = false;
 
-        const navVisibilityObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    navShouldBeHidden = true;
-                } else {
-                    // Check if ANY of the trigger sections are still visible
-                    // If none are visible, show the nav
-                }
-            });
-
-            // Re-evaluate: if any observed section is intersecting, hide; otherwise show
+        function checkNavVisibility() {
+            const viewportHeight = window.innerHeight;
+            
+            // Get current bounds of trigger sections
             const partnerRect = partnerSection.getBoundingClientRect();
             const footerRect = footerSection.getBoundingClientRect();
             const copyrightRect = copyrightSection.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
 
+            // Check if any part of these sections is inside the viewport
             const partnerVisible = partnerRect.top < viewportHeight && partnerRect.bottom > 0;
             const footerVisible = footerRect.top < viewportHeight && footerRect.bottom > 0;
             const copyrightVisible = copyrightRect.top < viewportHeight && copyrightRect.bottom > 0;
 
-            if (partnerVisible || footerVisible || copyrightVisible) {
+            // Determine current scroll direction
+            const scrollingDown = window.scrollY > lastScrollY;
+            
+            // Hide if any section is visible while scrolling down
+            if ((partnerVisible || footerVisible || copyrightVisible) && scrollingDown) {
                 bottomNav.classList.add('nav-hidden');
             } else {
+                // Show when scrolling up, or when none of the trigger sections are in the viewport
                 bottomNav.classList.remove('nav-hidden');
             }
-        }, {
-            threshold: 0,
-            rootMargin: '0px 0px -50px 0px'
-        });
 
-        navVisibilityObserver.observe(partnerSection);
-        navVisibilityObserver.observe(footerSection);
-        navVisibilityObserver.observe(copyrightSection);
+            lastScrollY = window.scrollY;
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(checkNavVisibility);
+                ticking = true;
+            }
+        }, { passive: true });
+        
+        // Initial check in case the page loads already scrolled
+        checkNavVisibility();
         // =============================================
 
         // Parallax scroll effect
