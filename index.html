@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luviio — Creative Design Studio</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @font-face {
@@ -16,7 +18,7 @@
 
         @font-face {
             font-family: 'PP Neue Montreal';
-            src: url('https://assets.website-fields.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
+            src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
             font-weight: 500;
             font-display: swap;
         }
@@ -24,7 +26,7 @@
         @font-face {
             font-family: 'PP Mondwest';
             src: url('./PPMondwest-Regular.woff2') format('woff2'),
-                 url('https://fonts.cdnfonts.com/s/91222/PPMondwest-Regular.woff') format('woff');
+                 url('https://fonts.cdnfonts.com/s/91222/PPMondwest-Regular.woff') format('woff'); /* Fallback network path for local execution */
             font-weight: 400;
             font-display: swap;
         }
@@ -42,6 +44,7 @@
             font-family: 'PP Mondwest', Georgia, serif;
         }
 
+        /* Animations */
         @keyframes fadeInUp {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
@@ -76,6 +79,7 @@
             animation-play-state: paused;
         }
 
+        /* Complex Button Shadows */
         .shadow-btn-primary {
             box-shadow: 0px 1px 2px 0px rgba(5,26,36,0.1), 
                         0px 4px 4px 0px rgba(5,26,36,0.09), 
@@ -98,15 +102,14 @@
             cursor: crosshair;
         }
 
-        /* Bottom Nav hide/show transition */
+        /* Transition property added for smooth hide/show of bottom nav */
         #bottom-nav {
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
         }
-
-        #bottom-nav.nav-hidden {
-            transform: translate(-50%, 100px);
-            opacity: 0;
-            pointer-events: none;
+        .nav-hidden {
+            transform: translateX(-50%) translateY(200%) !important;
+            opacity: 0 !important;
+            pointer-events: none !important;
         }
     </style>
 </head>
@@ -126,7 +129,7 @@
         </h2>
         
         <div class="flex flex-col gap-6 text-sm md:text-base text-[#051A24] leading-relaxed text-left mt-5 md:mt-6 reveal-element" style="animation-delay: 0.4s;">
-            <p>I spent seven years at Apple crafting products used by over a billion people. I founded Vortex Studio to bring that same level of thinking to innovators shaping what comes next.</p>
+            <p>I spent seven years at Apple crafting products used by over a billion people. I founded Luviio Studio to bring that same level of thinking to innovators shaping what comes next.</p>
             <p>The studio is deliberately small. I guide the creative vision on every project, backed by a veteran design crew that moves fast without cutting corners.</p>
             <p class="font-medium">Projects start at RM 500 per month.</p>
         </div>
@@ -144,6 +147,7 @@
     <!-- 2. INFINITE MARQUEE -->
     <section class="w-full overflow-hidden mt-16 md:mt-20 mb-16 marquee-container relative">
         <div class="marquee-track">
+            <!-- Repeated blocks of 8 images to make 16 total -->
             <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
             <img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
             <img src="https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
@@ -193,6 +197,7 @@
         <div class="max-w-7xl mx-auto flex flex-col md:items-end">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:max-w-4xl">
                 
+                <!-- Card 1 -->
                 <div class="bg-[#051A24] rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-inner reveal-element" style="animation-delay: 0.1s;">
                     <div>
                         <h3 class="text-[22px] font-medium text-[#F6FCFF] mb-4">Monthly Partnership</h3>
@@ -214,6 +219,7 @@
                     </div>
                 </div>
 
+                <!-- Card 2 -->
                 <div class="bg-white border border-slate-100 rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-[0_4px_16px_rgba(0,0,0,0.08)] reveal-element" style="animation-delay: 0.2s;">
                     <div>
                         <h3 class="text-[22px] font-medium text-[#0D212C] mb-4">Custom Project</h3>
@@ -260,6 +266,7 @@
 
         <div class="w-full px-6 overflow-hidden" id="carousel-viewport">
             <div class="flex gap-6 carousel-track" id="carousel-track">
+                <!-- Items are populated dynamically by JavaScript to manage infinite loops smoothly -->
             </div>
         </div>
     </section>
@@ -299,7 +306,7 @@
     </section>
 
     <!-- 7. PARTNER SECTION -->
-    <section id="partner-section" class="w-full py-12 px-6 bg-white" data-observe>
+    <section class="w-full py-12 px-6 bg-white" id="partner-section" data-observe>
         <div id="interactive-partner-container" class="max-w-7xl mx-auto py-48 rounded-[40px] bg-white border border-slate-100 shadow-sm relative overflow-hidden flex flex-col items-center justify-center text-center cursor-crosshair reveal-element" style="animation-delay: 0.1s;">
             <div class="relative z-10 flex flex-col items-center select-none">
                 <h2 class="text-[48px] md:text-[64px] lg:text-[80px] font-serif-custom leading-none text-[#0D212C] mb-12 tracking-tight">
@@ -314,7 +321,7 @@
     </section>
 
     <!-- 8. FOOTER -->
-    <footer id="footer-section" class="w-full pt-12 pb-6 px-6 max-w-[1200px] mx-auto bg-white border-t border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+    <footer class="w-full pt-12 pb-6 px-6 max-w-[1200px] mx-auto bg-white border-t border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-8" id="site-footer">
         <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium shadow-btn-primary hover:scale-[1.02] transition-transform duration-300 text-sm cursor-pointer">
             Start a chat
         </button>
@@ -336,7 +343,7 @@
     </footer>
 
     <!-- 9. COPYRIGHT BAR -->
-    <div id="copyright-section" class="w-full max-w-[1200px] mx-auto px-6 py-4 flex flex-row justify-between items-center text-sm text-[#051A24] bg-white tracking-tight opacity-70">
+    <div class="w-full max-w-[1200px] mx-auto px-6 py-4 flex flex-row justify-between items-center text-sm text-[#051A24] bg-white tracking-tight opacity-70">
         <div>Luviio Studio</div>
         <div>Kedah, Malaysia</div>
     </div>
@@ -349,8 +356,9 @@
         </button>
     </div>
 
+    <!-- SCRIPT INFRASTRUCTURE AND RENDER CONTROLLERS -->
     <script>
-        // Initialize Icons
+        // Initialize Icon Assembly
         lucide.createIcons();
 
         // Populate Clutch Rating Stars
@@ -360,7 +368,7 @@
         }
         lucide.createIcons({attrs: {'class': 'w-5 h-5 fill-black text-black'}, nameAttr: 'data-lucide'});
 
-        // Scroll reveal controller
+        // Scroll reveal controller using IntersectionObserver API
         const observerOptions = { threshold: 0.1 };
         const viewObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
@@ -377,59 +385,7 @@
             viewObserver.observe(section);
         });
 
-        // =============================================
-        // BOTTOM NAV VISIBILITY CONTROLLER
-        // Hides when "Partner With Us" or Footer is visible
-        // Re-appears when user scrolls up and they are no longer visible
-        // =============================================
-        const bottomNav = document.getElementById('bottom-nav');
-        const partnerSection = document.getElementById('partner-section');
-        const footerSection = document.getElementById('footer-section');
-        const copyrightSection = document.getElementById('copyright-section');
-
-        let lastScrollY = window.scrollY;
-        let ticking = false;
-
-        function checkNavVisibility() {
-            const viewportHeight = window.innerHeight;
-            
-            // Get current bounds of trigger sections
-            const partnerRect = partnerSection.getBoundingClientRect();
-            const footerRect = footerSection.getBoundingClientRect();
-            const copyrightRect = copyrightSection.getBoundingClientRect();
-
-            // Check if any part of these sections is inside the viewport
-            const partnerVisible = partnerRect.top < viewportHeight && partnerRect.bottom > 0;
-            const footerVisible = footerRect.top < viewportHeight && footerRect.bottom > 0;
-            const copyrightVisible = copyrightRect.top < viewportHeight && copyrightRect.bottom > 0;
-
-            // Determine current scroll direction
-            const scrollingDown = window.scrollY > lastScrollY;
-            
-            // Hide if any section is visible while scrolling down
-            if ((partnerVisible || footerVisible || copyrightVisible) && scrollingDown) {
-                bottomNav.classList.add('nav-hidden');
-            } else {
-                // Show when scrolling up, or when none of the trigger sections are in the viewport
-                bottomNav.classList.remove('nav-hidden');
-            }
-
-            lastScrollY = window.scrollY;
-            ticking = false;
-        }
-
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                window.requestAnimationFrame(checkNavVisibility);
-                ticking = true;
-            }
-        }, { passive: true });
-        
-        // Initial check in case the page loads already scrolled
-        checkNavVisibility();
-        // =============================================
-
-        // Parallax scroll effect
+        // Parallax scroll effect tracker
         const parallaxImg = document.getElementById('parallax-img');
         const parallaxSection = document.getElementById('parallax-section');
         
@@ -442,7 +398,7 @@
                 const totalDistance = viewportHeight + rect.height;
                 const currentProgress = (viewportHeight - rect.top) / totalDistance;
                 const boundedProgress = Math.max(0, Math.min(1, currentProgress));
-                const yOffset = (boundedProgress - 0.5) * 200;
+                const yOffset = (boundedProgress - 0.5) * 200; // max offset 200px
                 
                 window.requestAnimationFrame(() => {
                     parallaxImg.style.transform = `translateY(${yOffset}px) scale(1.05)`;
@@ -450,7 +406,7 @@
             }
         }, { passive: true });
 
-        // Testimonial Carousel
+        // Testimonial Data & Carousel Pipeline
         const testimonials = [
             { name: "Marcus Anderson", role: "CEO", company: "Data.storage", quote: "With very little guidance team delivered designs that were consistently spot on...", avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" },
             { name: "alexwu", role: "Founder", company: "Nexgate", quote: "Danial led the creation of our best fundraising deck to date!...", avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" },
@@ -459,11 +415,12 @@
             { name: "David Zhang", role: "Head of Design", company: "Paradigm Labs", quote: "Incredible work from start to finish...", avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150" }
         ];
 
+        // Triple arrays to simulate infinite cyclic carousel mechanics
         const carouselList = [...testimonials, ...testimonials, ...testimonials];
         const carouselTrack = document.getElementById('carousel-track');
         let cardWidthDesktop = 427.5;
         const gapWidth = 24;
-        let currentIndex = testimonials.length;
+        let currentIndex = testimonials.length; // Start position aligned on structural loop index 1
         let isTransitioning = true;
         let autoplayTimer;
 
@@ -473,6 +430,7 @@
                 const card = document.createElement('div');
                 card.className = "bg-white border border-slate-50 rounded-[32px] md:rounded-[40px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-6 md:pl-10 md:pr-24 py-8 shrink-0 flex flex-col justify-between h-[260px] select-none transition-transform duration-300 hover:scale-[0.99]";
                 
+                // Track fluid resizing variables relative to screen size breaks
                 if(window.innerWidth < 768) {
                     card.style.width = 'calc(100vw - 48px)';
                 } else {
@@ -542,7 +500,7 @@
         buildCarousel();
         startAutoplay();
 
-        // Partner Mouse Trail
+        // 7. PARTNER MOUSE TRAIL SPATTER SCHEDULER
         const partnerContainer = document.getElementById('interactive-partner-container');
         const spatterThumbnails = [
             "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
@@ -558,14 +516,14 @@
 
         partnerContainer.addEventListener('mousemove', (e) => {
             const currentTime = Date.now();
-            if (currentTime - lastSpatterTime < 80) return;
+            if (currentTime - lastSpatterTime < 80) return; // Enforce explicit 80ms boundary limits
             lastSpatterTime = currentTime;
 
             const rect = partnerContainer.getBoundingClientRect();
             const posX = e.clientX - rect.left;
             const posY = e.clientY - rect.top;
 
-            const randomAngle = Math.floor(Math.random() * 20) - 10;
+            const randomAngle = Math.floor(Math.random() * 20) - 10; // -10 to +10 degrees
             const randomThumb = spatterThumbnails[Math.floor(Math.random() * spatterThumbnails.length)];
 
             const particle = document.createElement('div');
@@ -578,6 +536,7 @@
             particle.innerHTML = `<img src="${randomThumb}" class="w-full h-full object-cover">`;
             partnerContainer.appendChild(particle);
 
+            // Execute requestAnimationFrame layout animation and subsequent resource cleaning cycle
             window.requestAnimationFrame(() => {
                 setTimeout(() => {
                     particle.style.transform = `translate(-50%, -50%) rotate(${randomAngle}deg) scale(0.3)`;
@@ -589,6 +548,29 @@
                 particle.remove();
             }, 1050);
         });
+
+        // BOTTOM NAV VISIBILITY CONTROLLER
+        const bottomNav = document.getElementById('bottom-nav');
+        const partnerSection = document.getElementById('partner-section');
+        const siteFooter = document.getElementById('site-footer');
+
+        const navVisibilityObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // If the target intersects the viewport, hide the nav. Otherwise, show it.
+                if (entry.isIntersecting) {
+                    bottomNav.classList.add('nav-hidden');
+                } else {
+                    bottomNav.classList.remove('nav-hidden');
+                }
+            });
+        }, { 
+            threshold: 0.1, 
+            rootMargin: "0px 0px -50px 0px" // Small buffer so it vanishes just as it scrolls into view
+        });
+
+        // Observe both the partner section and the footer
+        navVisibilityObserver.observe(partnerSection);
+        navVisibilityObserver.observe(siteFooter);
     </script>
 </body>
 </html>
