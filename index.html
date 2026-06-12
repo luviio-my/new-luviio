@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luviio — Creative Design Studio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @font-face {
+            font-family: 'PP Neue Montreal';
+            src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PP Neue Montreal';
+            src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9b39c5673e51a86f5a_PPNeueMontreal-Medium.otf') format('opentype');
+            font-weight: 500;
+            font-display: swap;
+        }
+
+        @font-face {
+            font-family: 'PP Mondwest';
+            src: url('./PPMondwest-Regular.woff2') format('woff2'),
+                 url('https://fonts.cdnfonts.com/s/91222/PPMondwest-Regular.woff') format('woff'); /* Fallback network path for local execution */
+            font-weight: 400;
+            font-display: swap;
+        }
+
+        body {
+            font-family: 'PP Neue Montreal', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background-color: #ffffff;
+            color: #051A24;
+            overflow-x: hidden;
+            margin: 0;
+            padding: 0;
+        }
+
+        .font-serif-custom {
+            font-family: 'PP Mondwest', Georgia, serif;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .reveal-element {
+            opacity: 0;
+        }
+
+        .animate-fade-in-up {
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .marquee-track {
+            display: flex;
+            width: max-content;
+            animation: marquee 12s linear infinite;
+        }
+
+        @media (min-width: 768px) {
+            .marquee-track {
+                animation: marquee 30s linear infinite;
+            }
+        }
+
+        .marquee-container:hover .marquee-track {
+            animation-play-state: paused;
+        }
+
+        /* Complex Button Shadows */
+        .shadow-btn-primary {
+            box-shadow: 0px 1px 2px 0px rgba(5,26,36,0.1), 
+                        0px 4px 4px 0px rgba(5,26,36,0.09), 
+                        0px 9px 6px 0px rgba(5,26,36,0.05), 
+                        0px 17px 7px 0px rgba(5,26,36,0.01), 
+                        0px 26px 7px 0px rgba(5,26,36,0), 
+                        inset 0px 2px 8px 0px rgba(255,255,255,0.5);
+        }
+
+        .shadow-btn-secondary {
+            box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,0.05), 
+                        0px 4px 30px rgba(0,0,0,0.08);
+        }
+
+        .carousel-track {
+            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .cursor-crosshair {
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body class="bg-white text-[#051A24]">
+
+    <!-- 1. HERO SECTION -->
+    <section class="max-w-[440px] mx-auto px-6 pt-12 md:pt-16 text-center flex flex-col items-center select-none" data-observe>
+        <h1 class="font-serif-custom font-semibold text-[32px] md:text-[40px] lg:text-[44px] text-[#051A24] tracking-tight mb-4 reveal-element" style="animation-delay: 0.1s;">
+            Luviio Studio
+        </h1>
+        <p class="font-mono text-xs md:text-sm text-[#051A24] mb-2 reveal-element" style="animation-delay: 0.2s;">
+            The creative studio of Danial Danish
+        </p>
+        <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight whitespace-nowrap reveal-element" style="animation-delay: 0.3s;">
+            Build the <span class="font-serif-custom italic">next wave,</span><br>
+            <span class="font-serif-custom italic">the bold way.</span>
+        </h2>
+        
+        <div class="flex flex-col gap-6 text-sm md:text-base text-[#051A24] leading-relaxed text-left mt-5 md:mt-6 reveal-element" style="animation-delay: 0.4s;">
+            <p>I spent seven years at Apple crafting products used by over a billion people. I founded Vortex Studio to bring that same level of thinking to innovators shaping what comes next.</p>
+            <p>The studio is deliberately small. I guide the creative vision on every project, backed by a veteran design crew that moves fast without cutting corners.</p>
+            <p class="font-medium">Projects start at RM 500 per month.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-6 w-full sm:w-auto justify-center reveal-element" style="animation-delay: 0.5s;">
+            <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-primary cursor-pointer text-sm md:text-base">
+                Start a chat
+            </button>
+            <button onclick="document.getElementById('projects-section').scrollIntoView({behavior: 'smooth'})" class="bg-white text-[#051A24] rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-secondary cursor-pointer text-sm md:text-base">
+                View projects
+            </button>
+        </div>
+    </section>
+
+    <!-- 2. INFINITE MARQUEE -->
+    <section class="w-full overflow-hidden mt-16 md:mt-20 mb-16 marquee-container relative">
+        <div class="marquee-track">
+            <!-- Repeated blocks of 8 images to make 16 total -->
+            <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            
+            <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+            <img src="https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
+        </div>
+    </section>
+
+    <!-- 3. TESTIMONIAL QUOTE SECTION -->
+    <section class="py-12 px-6 max-w-2xl mx-auto flex flex-col items-center text-center" id="parallax-section" data-observe>
+        <div class="reveal-element" style="animation-delay: 0.1s;">
+            <i data-lucide="quote" class="w-6 h-6 text-slate-900 fill-slate-900 mb-6"></i>
+        </div>
+        <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight mb-6 reveal-element" style="animation-delay: 0.2s;">
+            I left <span class="font-serif-custom italic">Apple</span> to build the studio I always wanted to work with
+        </h2>
+        <p class="italic text-sm text-[#273C46] mb-12 reveal-element" style="animation-delay: 0.3s;">
+            — Danial Danish
+        </p>
+        
+        <div class="flex items-center justify-center gap-12 mb-16 text-slate-900 font-medium reveal-element" style="animation-delay: 0.4s;">
+            <span class="text-[24px] tracking-tight w-[80px]">Apple</span>
+            <span class="text-[24px] tracking-tight w-[83px]">IDEO</span>
+            <span class="text-[24px] tracking-tight w-[110px]">Polygon</span>
+        </div>
+
+        <div class="w-full max-w-xs rounded-2xl overflow-hidden shadow-lg h-[380px] relative reveal-element" style="animation-delay: 0.5s;">
+            <img id="parallax-img" src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" 
+                 alt="Danial Danish" class="w-full h-[140%] object-cover absolute left-0 top-[-20%] transition-transform duration-75 ease-out">
+        </div>
+    </section>
+
+    <!-- 4. PRICING SECTION -->
+    <section class="w-full py-12 px-6 bg-white" data-observe>
+        <div class="max-w-7xl mx-auto flex flex-col md:items-end">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:max-w-4xl">
+                
+                <!-- Card 1 -->
+                <div class="bg-[#051A24] rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-inner reveal-element" style="animation-delay: 0.1s;">
+                    <div>
+                        <h3 class="text-[22px] font-medium text-[#F6FCFF] mb-4">Monthly Partnership</h3>
+                        <p class="text-[#E0EBF0] text-sm md:text-base leading-relaxed mb-8">
+                            A dedicated creative design team. <br> You work directly with Danial.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="mb-6">
+                            <span class="text-2xl font-semibold text-[#F6FCFF]">RM 300</span>
+                            <span class="block text-xs uppercase tracking-wider text-[#E0EBF0]/60 mt-1">Monthly</span>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                            <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-white text-[#051A24] rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">
+                                Start a chat
+                            </button>
+                            <a href="https://halaskastudio.com/./book" class="text-sm font-medium text-[#E0EBF0] hover:text-white transition-colors">How it works</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white border border-slate-100 rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-[0_4px_16px_rgba(0,0,0,0.08)] reveal-element" style="animation-delay: 0.2s;">
+                    <div>
+                        <h3 class="text-[22px] font-medium text-[#0D212C] mb-4">Custom Project</h3>
+                        <p class="text-[#051A24]/70 text-sm md:text-base leading-relaxed mb-8">
+                            Fixed scope, fixed timeline. <br> Same team, same standards.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="mb-6">
+                            <span class="text-2xl font-semibold text-[#0D212C]">RM 500</span>
+                            <span class="block text-xs uppercase tracking-wider text-[#051A24]/50 mt-1">Minimum</span>
+                        </div>
+                        <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-white text-[#051A24] border-0 rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">
+                            Start a chat
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TESTIMONIAL CAROUSEL -->
+    <section class="w-full py-20 bg-white overflow-hidden relative">
+        <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
+            <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight max-w-lg">
+                What <span class="font-serif-custom italic">builders</span> say
+            </h2>
+            <div class="flex items-center gap-6">
+                <div class="flex items-center gap-2">
+                    <div class="flex text-black" id="stars-container"></div>
+                    <span class="text-sm font-medium text-slate-950 tracking-tight">Clutch 5/5</span>
+                </div>
+                <div class="flex gap-2">
+                    <button onclick="prevSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer">
+                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
+                    </button>
+                    <button onclick="nextSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer">
+                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="w-full px-6 overflow-hidden" id="carousel-viewport">
+            <div class="flex gap-6 carousel-track" id="carousel-track">
+                <!-- Items are populated dynamically by JavaScript to manage infinite loops smoothly -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. PROJECTS SECTION -->
+    <section id="projects-section" class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col gap-16 md:gap-20 bg-white">
+        
+        <article class="w-full flex flex-col gap-6" data-observe>
+            <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
+                <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">evr</h3>
+                <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">From idea to millions raised for a web3 AI product</p>
+            </div>
+            <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[320px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
+                <img src="https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif" alt="evr project preview" class="w-full h-full object-cover">
+            </div>
+        </article>
+
+        <article class="w-full flex flex-col gap-6" data-observe>
+            <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
+                <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">Automation Machines</h3>
+                <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">Streamlining industrial automation processes</p>
+            </div>
+            <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[320px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
+                <img src="https://motionsites.ai/assets/hero-automation-machines-preview-DlTveRIN.gif" alt="Automation Machines preview" class="w-full h-full object-cover">
+            </div>
+        </article>
+
+        <article class="w-full flex flex-col gap-6" data-observe>
+            <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
+                <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">xPortfolio</h3>
+                <p class="text-sm md:text-base text-[#051A24]/70 tracking-tight">Modern portfolio management platform</p>
+            </div>
+            <div class="w-full rounded-2xl overflow-hidden shadow-lg h-[320px] md:h-[600px] reveal-element" style="animation-delay: 0.2s;">
+                <img src="https://motionsites.ai/assets/hero-xportfolio-preview-D4A8maiC.gif" alt="xPortfolio preview" class="w-full h-full object-cover">
+            </div>
+        </article>
+    </section>
+
+    <!-- 7. PARTNER SECTION -->
+    <section class="w-full py-12 px-6 bg-white" data-observe>
+        <div id="interactive-partner-container" class="max-w-7xl mx-auto py-48 rounded-[40px] bg-white border border-slate-100 shadow-sm relative overflow-hidden flex flex-col items-center justify-center text-center cursor-crosshair reveal-element" style="animation-delay: 0.1s;">
+            <div class="relative z-10 flex flex-col items-center select-none">
+                <h2 class="text-[48px] md:text-[64px] lg:text-[80px] font-serif-custom leading-none text-[#0D212C] mb-12 tracking-tight">
+                    Partner with us
+                </h2>
+                <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full pl-3 pr-7 py-2.5 font-medium flex items-center gap-3 shadow-btn-primary hover:scale-[1.01] transition-transform duration-200 cursor-pointer text-sm md:text-base">
+                    <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
+                    <span>Start chat with Danial</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. FOOTER -->
+    <footer class="w-full pt-12 pb-6 px-6 max-w-[1200px] mx-auto bg-white border-t border-slate-100 flex flex-col md:flex-row justify-between items-start md:items-center gap-8">
+        <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium shadow-btn-primary hover:scale-[1.02] transition-transform duration-300 text-sm cursor-pointer">
+            Start a chat
+        </button>
+        <div class="flex gap-16 md:gap-24">
+            <div class="flex flex-col gap-3">
+                <a href="#" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Services</a>
+                <a href="#projects-section" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Work</a>
+                <a href="#" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">About</a>
+            </div>
+            <div class="flex flex-col gap-3">
+                <a href="https://x.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1">
+                    x.com <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i>
+                </a>
+                <a href="https://linkedin.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1">
+                    LinkedIn <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 9. COPYRIGHT BAR -->
+    <div class="w-full max-w-[1200px] mx-auto px-6 py-4 flex flex-row justify-between items-center text-sm text-[#051A24] bg-white tracking-tight opacity-70">
+        <div>Luviio Studio</div>
+        <div>Kedah, Malaysia</div>
+    </div>
+
+    <!-- 10. FIXED BOTTOM NAV -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md rounded-full px-8 py-2.5 flex items-center gap-8 shadow-[0px_0px_0px_0.5px_rgba(0,0,0,0.05),0px_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 whitespace-nowrap">
+        <span class="font-serif-custom text-2xl font-semibold text-[#051A24] tracking-tighter select-none">D</span>
+        <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full px-5 py-2 text-sm font-medium shadow-btn-primary hover:bg-[#0d212c] cursor-pointer">
+            Start a chat
+        </button>
+    </div>
+
+    <!-- SCRIPT INFRASTRUCTURE AND RENDER CONTROLLERS -->
+    <script>
+        // Initialize Icon Assembly
+        lucide.createIcons();
+
+        // Populate Clutch Rating Stars
+        const starContainer = document.getElementById('stars-container');
+        for(let i=0; i<5; i++){
+            starContainer.innerHTML += `<i data-lucide="star" class="w-5 h-5 fill-black text-black"></i>`;
+        }
+        lucide.createIcons({attrs: {'class': 'w-5 h-5 fill-black text-black'}, nameAttr: 'data-lucide'});
+
+        // Scroll reveal controller using IntersectionObserver API
+        const observerOptions = { threshold: 0.1 };
+        const viewObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.querySelectorAll('.reveal-element').forEach(el => {
+                        el.classList.add('animate-fade-in-up');
+                    });
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('[data-observe]').forEach(section => {
+            viewObserver.observe(section);
+        });
+
+        // Parallax scroll effect tracker
+        const parallaxImg = document.getElementById('parallax-img');
+        const parallaxSection = document.getElementById('parallax-section');
+        
+        window.addEventListener('scroll', () => {
+            if (!parallaxSection || !parallaxImg) return;
+            const rect = parallaxSection.getBoundingClientRect();
+            const viewportHeight = window.innerHeight;
+            
+            if (rect.top < viewportHeight && rect.bottom > 0) {
+                const totalDistance = viewportHeight + rect.height;
+                const currentProgress = (viewportHeight - rect.top) / totalDistance;
+                const boundedProgress = Math.max(0, Math.min(1, currentProgress));
+                const yOffset = (boundedProgress - 0.5) * 200; // max offset 200px
+                
+                window.requestAnimationFrame(() => {
+                    parallaxImg.style.transform = `translateY(${yOffset}px) scale(1.05)`;
+                });
+            }
+        }, { passive: true });
+
+        // Testimonial Data & Carousel Pipeline
+        const testimonials = [
+            { name: "Marcus Anderson", role: "CEO", company: "Data.storage", quote: "With very little guidance team delivered designs that were consistently spot on...", avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "alexwu", role: "Founder", company: "Nexgate", quote: "Danial led the creation of our best fundraising deck to date!...", avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "James Mitchell", role: "VP Product", company: "LaunchPad", quote: "Working with Danial transformed our product vision...", avatar: "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "Rachel Foster", role: "Co-founder", company: "Nexus Labs", quote: "The design quality exceeded our expectations...", avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150" },
+            { name: "David Zhang", role: "Head of Design", company: "Paradigm Labs", quote: "Incredible work from start to finish...", avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150" }
+        ];
+
+        // Triple arrays to simulate infinite cyclic carousel mechanics
+        const carouselList = [...testimonials, ...testimonials, ...testimonials];
+        const carouselTrack = document.getElementById('carousel-track');
+        let cardWidthDesktop = 427.5;
+        const gapWidth = 24;
+        let currentIndex = testimonials.length; // Start position aligned on structural loop index 1
+        let isTransitioning = true;
+        let autoplayTimer;
+
+        function buildCarousel() {
+            carouselTrack.innerHTML = '';
+            carouselList.forEach((item) => {
+                const card = document.createElement('div');
+                card.className = "bg-white border border-slate-50 rounded-[32px] md:rounded-[40px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-6 md:pl-10 md:pr-24 py-8 shrink-0 flex flex-col justify-between h-[260px] select-none transition-transform duration-300 hover:scale-[0.99]";
+                
+                // Track fluid resizing variables relative to screen size breaks
+                if(window.innerWidth < 768) {
+                    card.style.width = 'calc(100vw - 48px)';
+                } else {
+                    card.style.width = `${cardWidthDesktop}px`;
+                }
+
+                card.innerHTML = `
+                    <div>
+                        <svg class="w-8 h-8 text-[#0D212C]/10 mb-3 fill-current" viewBox="0 0 32 32">
+                            <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z" />
+                        </svg>
+                        <p class="text-base text-[#0D212C] leading-relaxed line-clamp-3 tracking-tight">"${item.quote}"</p>
+                    </div>
+                    <div class="flex items-center gap-4 mt-4">
+                        <img src="${item.avatar}" alt="${item.name}" class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <h4 class="font-semibold text-sm text-[#0D212C]">${item.name}</h4>
+                            <p class="text-xs text-[#273C46] flex items-center gap-1 mt-0.5"><span>→</span> ${item.role}, ${item.company}</p>
+                        </div>
+                    </div>
+                `;
+                carouselTrack.appendChild(card);
+            });
+            updateCarouselPosition(false);
+        }
+
+        function updateCarouselPosition(animate = true) {
+            const widthFactor = window.innerWidth < 768 ? (window.innerWidth - 48) : cardWidthDesktop;
+            const displacement = currentIndex * (widthFactor + gapWidth);
+            carouselTrack.style.transition = animate ? 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
+            carouselTrack.style.transform = `translateX(-${displacement}px)`;
+        }
+
+        function nextSlide() {
+            if (!isTransitioning) return;
+            currentIndex++;
+            updateCarouselPosition(true);
+        }
+
+        function prevSlide() {
+            if (!isTransitioning) return;
+            currentIndex--;
+            updateCarouselPosition(true);
+        }
+
+        carouselTrack.addEventListener('transitionend', () => {
+            if (currentIndex >= testimonials.length * 2) {
+                currentIndex -= testimonials.length;
+                updateCarouselPosition(false);
+            } else if (currentIndex < testimonials.length) {
+                currentIndex += testimonials.length;
+                updateCarouselPosition(false);
+            }
+        });
+
+        function startAutoplay() {
+            autoplayTimer = setInterval(nextSlide, 3000);
+        }
+        function stopAutoplay() {
+            clearInterval(autoplayTimer);
+        }
+
+        carouselTrack.addEventListener('mouseenter', stopAutoplay);
+        carouselTrack.addEventListener('mouseleave', startAutoplay);
+        window.addEventListener('resize', () => { buildCarousel(); });
+
+        buildCarousel();
+        startAutoplay();
+
+        // 7. PARTNER MOUSE TRAIL SPATTER SCHEDULER
+        const partnerContainer = document.getElementById('interactive-partner-container');
+        const spatterThumbnails = [
+            "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
+            "https://motionsites.ai/assets/hero-portfolio-cosmic-preview-BpvWJ3Nc.gif",
+            "https://motionsites.ai/assets/hero-velorah-preview-CJNTtbpd.gif",
+            "https://motionsites.ai/assets/hero-asme-preview-B_nGDnTP.gif",
+            "https://motionsites.ai/assets/hero-transform-data-preview-Cx5OU29N.gif",
+            "https://motionsites.ai/assets/hero-aethera-preview-DknSlcTa.gif",
+            "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
+            "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif"
+        ];
+        let lastSpatterTime = 0;
+
+        partnerContainer.addEventListener('mousemove', (e) => {
+            const currentTime = Date.now();
+            if (currentTime - lastSpatterTime < 80) return; // Enforce explicit 80ms boundary limits
+            lastSpatterTime = currentTime;
+
+            const rect = partnerContainer.getBoundingClientRect();
+            const posX = e.clientX - rect.left;
+            const posY = e.clientY - rect.top;
+
+            const randomAngle = Math.floor(Math.random() * 20) - 10; // -10 to +10 degrees
+            const randomThumb = spatterThumbnails[Math.floor(Math.random() * spatterThumbnails.length)];
+
+            const particle = document.createElement('div');
+            particle.className = "absolute w-24 h-16 md:w-36 md:h-24 rounded-lg overflow-hidden shadow-md pointer-events-none z-0";
+            particle.style.left = `${posX}px`;
+            particle.style.top = `${posY}px`;
+            particle.style.transform = `translate(-50%, -50%) rotate(${randomAngle}deg) scale(1)`;
+            particle.style.transition = "transform 1000ms cubic-bezier(0.4, 0, 0.2, 1), opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1)";
+            
+            particle.innerHTML = `<img src="${randomThumb}" class="w-full h-full object-cover">`;
+            partnerContainer.appendChild(particle);
+
+            // Execute requestAnimationFrame layout animation and subsequent resource cleaning cycle
+            window.requestAnimationFrame(() => {
+                setTimeout(() => {
+                    particle.style.transform = `translate(-50%, -50%) rotate(${randomAngle}deg) scale(0.3)`;
+                    particle.style.opacity = "0";
+                }, 50);
+            });
+
+            setTimeout(() => {
+                particle.remove();
+            }, 1050);
+        });
+    </script>
+</body>
+</html>
