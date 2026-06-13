@@ -4,14 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Luviio — Creative Design Studio</title>
-    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest"></script>
     <style>
         @font-face {
             font-family: 'PP Neue Montreal';
-            src: url('https://assets.website-files.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
+            src: url('https://assets.website-fields.com/6009ec8cda7f305645c9d91b/60176f9bb43e36419997ecfe_PPNeueMontreal-Book.otf') format('opentype');
             font-weight: 400;
             font-display: swap;
         }
@@ -44,15 +42,12 @@
             font-family: 'PP Mondwest', Georgia, serif;
         }
 
-        /* Animations */
         @keyframes fadeInUp {
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
 
-        .reveal-element {
-            opacity: 0;
-        }
+        .reveal-element { opacity: 0; }
 
         .animate-fade-in-up {
             animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -70,39 +65,24 @@
         }
 
         @media (min-width: 768px) {
-            .marquee-track {
-                animation: marquee 30s linear infinite;
-            }
+            .marquee-track { animation: marquee 30s linear infinite; }
         }
 
-        .marquee-container:hover .marquee-track {
-            animation-play-state: paused;
-        }
+        .marquee-container:hover .marquee-track { animation-play-state: paused; }
 
-        /* Complex Button Shadows */
         .shadow-btn-primary {
-            box-shadow: 0px 1px 2px 0px rgba(5,26,36,0.1), 
-                        0px 4px 4px 0px rgba(5,26,36,0.09), 
-                        0px 9px 6px 0px rgba(5,26,36,0.05), 
-                        0px 17px 7px 0px rgba(5,26,36,0.01), 
-                        0px 26px 7px 0px rgba(5,26,36,0), 
-                        inset 0px 2px 8px 0px rgba(255,255,255,0.5);
+            box-shadow: 0px 1px 2px 0px rgba(5,26,36,0.1), 0px 4px 4px 0px rgba(5,26,36,0.09), 0px 9px 6px 0px rgba(5,26,36,0.05), 0px 17px 7px 0px rgba(5,26,36,0.01), 0px 26px 7px 0px rgba(5,26,36,0), inset 0px 2px 8px 0px rgba(255,255,255,0.5);
         }
 
         .shadow-btn-secondary {
-            box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,0.05), 
-                        0px 4px 30px rgba(0,0,0,0.08);
+            box-shadow: 0px 0px 0px 0.5px rgba(0,0,0,0.05), 0px 4px 30px rgba(0,0,0,0.08);
         }
 
-        .carousel-track {
-            transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .cursor-crosshair {
-            cursor: crosshair;
-        }
+        .shadow-blue-btn { box-shadow: 0px 8px 20px rgba(37, 99, 235, 0.35); }
 
-        /* Transition property added for smooth hide/show of bottom nav */
+        .carousel-track { transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .cursor-crosshair { cursor: crosshair; }
+
         #bottom-nav {
             transition: transform 400ms cubic-bezier(0.4, 0, 0.2, 1), opacity 300ms ease;
         }
@@ -112,7 +92,6 @@
             pointer-events: none !important;
         }
 
-        /* Hover cursor popup image */
         .team-hover-img {
             position: fixed;
             pointer-events: none;
@@ -127,27 +106,113 @@
             transition: opacity 300ms ease, transform 300ms cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        .team-hover-img.active {
-            opacity: 1;
-            transform: scale(1);
+        .team-hover-img.active { opacity: 1; transform: scale(1); }
+        .team-name-hover { cursor: pointer; transition: color 200ms ease; }
+        .team-name-hover:hover { color: #0D212C; }
+
+        .page-overlay {
+            position: fixed; inset: 0; background: rgba(255,255,255,0.98); z-index: 9000;
+            transform: translateY(100%); transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            overflow-y: auto;
+        }
+        .page-overlay.active { transform: translateY(0); }
+        
+        .time-slot-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+        .time-slot-btn.selected { background-color: #051A24; color: white; border-color: #051A24; }
+        
+        .tz-select {
+            appearance: none; background: transparent; border: none; font-size: 14px; color: #475569;
+            cursor: pointer; outline: none; font-family: inherit;
+        }
+        .meeting-select {
+            appearance: none; background: transparent; border: none; font-size: 14px; color: #475569;
+            cursor: pointer; outline: none; font-family: inherit;
         }
 
-        .team-name-hover {
-            cursor: pointer;
-            transition: color 200ms ease;
+        @keyframes checkmark {
+            0% { stroke-dashoffset: 50; } 100% { stroke-dashoffset: 0; }
         }
+        .check-animated { stroke-dasharray: 50; stroke-dashoffset: 50; animation: checkmark 0.5s ease forwards 0.3s; }
 
-        .team-name-hover:hover {
-            color: #0D212C;
+        /* Partner Trail Elements */
+        .partner-trail {
+            position: absolute;
+            pointer-events: none;
+            border-radius: 16px;
+            object-fit: cover;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+            opacity: 0;
+            transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1;
+            transform: scale(0.8);
+        }
+        .partner-trail.visible {
+            opacity: 0.85;
+            transform: scale(1) rotate(0deg);
+        }
+        .partner-trail.fade-out {
+            opacity: 0;
+            transform: scale(0.6) rotate(5deg);
         }
     </style>
 </head>
 <body class="bg-white text-[#051A24]">
 
-    <!-- Shared hover image element for the team section -->
     <img id="team-hover-img" class="team-hover-img" src="" alt="Team Member">
 
-    <!-- 1. HERO SECTION -->
+    <!-- Terms Page Overlay -->
+    <div id="terms-overlay" class="page-overlay">
+        <div class="max-w-3xl mx-auto px-6 py-16 relative">
+            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h1 class="text-4xl font-serif-custom tracking-tight mb-8">Terms of Service</h1>
+            <div class="text-sm md:text-base text-slate-700 leading-relaxed space-y-6">
+                <p>Last updated: June 2025</p>
+                <h3 class="text-lg font-semibold text-slate-900">1. Agreement to Terms</h3>
+                <p>By accessing and using the services provided by Luviio Studio ("Luviio", "we", "us", or "our"), you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services.</p>
+                <h3 class="text-lg font-semibold text-slate-900">2. Services</h3>
+                <p>Luviio provides creative design, web development, business systems, and automation solutions. All services are subject to the specific scope, timeline, and terms outlined in individual project proposals and agreements.</p>
+                <h3 class="text-lg font-semibold text-slate-900">3. Client Responsibilities</h3>
+                <p>Clients agree to provide timely feedback, necessary assets, and access required for project completion. Delays in client responsiveness may impact project timelines and delivery dates.</p>
+                <h3 class="text-lg font-semibold text-slate-900">4. Payments</h3>
+                <p>Payment terms are as specified in individual project agreements. Unless otherwise stated, invoices are due within 14 days of issuance. We reserve the right to pause work on projects with overdue payments.</p>
+                <h3 class="text-lg font-semibold text-slate-900">5. Intellectual Property</h3>
+                <p>Upon full payment, clients receive ownership of final deliverables as specified in their project agreement. Luviio retains the right to showcase the work in our portfolio unless a specific NDA is in place.</p>
+                <h3 class="text-lg font-semibold text-slate-900">6. Limitation of Liability</h3>
+                <p>Luviio's liability is limited to the total amount paid for the specific service in question. We are not liable for any indirect, incidental, or consequential damages arising from the use of our services.</p>
+                <h3 class="text-lg font-semibold text-slate-900">7. Governing Law</h3>
+                <p>These terms are governed by the laws of Malaysia. Any disputes shall be resolved in the courts of Kedah, Malaysia.</p>
+                <p>For any questions regarding these terms, please contact us at hello@luviio.com.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Page Overlay -->
+    <div id="policy-overlay" class="page-overlay">
+        <div class="max-w-3xl mx-auto px-6 py-16 relative">
+            <button onclick="closeOverlay()" class="absolute top-6 right-6 w-10 h-10 flex items-center justify-center rounded-full hover:bg-slate-100 transition-colors cursor-pointer border-0 bg-transparent">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
+            <h1 class="text-4xl font-serif-custom tracking-tight mb-8">Privacy Policy</h1>
+            <div class="text-sm md:text-base text-slate-700 leading-relaxed space-y-6">
+                <p>Last updated: June 2025</p>
+                <h3 class="text-lg font-semibold text-slate-900">1. Information We Collect</h3>
+                <p>We collect information you provide directly to us, such as your name, email address, business name, and project details when you book a consultation or contact us. We also collect usage data through cookies and similar technologies.</p>
+                <h3 class="text-lg font-semibold text-slate-900">2. How We Use Your Information</h3>
+                <p>We use your information to provide and improve our services, communicate with you, schedule meetings, and send relevant updates. We do not sell your personal information to third parties.</p>
+                <h3 class="text-lg font-semibold text-slate-900">3. Information Sharing</h3>
+                <p>We may share your information with service providers who assist in our operations (such as scheduling and communication tools), but only to the extent necessary for them to perform their services on our behalf.</p>
+                <h3 class="text-lg font-semibold text-slate-900">4. Data Security</h3>
+                <p>We implement reasonable security measures to protect your personal information. However, no method of transmission over the Internet or electronic storage is completely secure.</p>
+                <h3 class="text-lg font-semibold text-slate-900">5. Your Rights</h3>
+                <p>You may request access to, correction of, or deletion of your personal data at any time by contacting us at hello@luviio.com. We will respond to such requests within a reasonable timeframe.</p>
+                <h3 class="text-lg font-semibold text-slate-900">6. Contact Us</h3>
+                <p>If you have questions about this Privacy Policy, please contact us at hello@luviio.com or through our website at luviio.com.</p>
+            </div>
+        </div>
+    </div>
+
     <section class="max-w-[440px] mx-auto px-6 pt-12 md:pt-16 text-center flex flex-col items-center select-none" data-observe>
         <h1 class="font-serif-custom font-semibold text-[32px] md:text-[40px] lg:text-[44px] text-[#051A24] tracking-tight mb-2 reveal-element" style="animation-delay: 0.1s;">
             Luviio Studio
@@ -166,7 +231,7 @@
         </div>
 
         <div class="flex flex-col sm:flex-row gap-3 md:gap-4 mt-5 md:mt-6 w-full sm:w-auto justify-center reveal-element" style="animation-delay: 0.5s;">
-            <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-primary cursor-pointer text-sm md:text-base">
+            <button onclick="scrollToBooking()" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-primary cursor-pointer text-sm md:text-base">
                 Start a chat
             </button>
             <button onclick="document.getElementById('projects-section').scrollIntoView({behavior: 'smooth'})" class="bg-white text-[#051A24] rounded-full px-7 py-3 font-medium transition-transform duration-300 hover:scale-[1.02] shadow-btn-secondary cursor-pointer text-sm md:text-base">
@@ -175,7 +240,6 @@
         </div>
     </section>
 
-    <!-- 2. INFINITE MARQUEE -->
     <section class="w-full overflow-hidden mt-16 md:mt-20 mb-16 marquee-container relative">
         <div class="marquee-track">
             <img src="https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif" class="h-[280px] md:h-[500px] object-cover mx-3 rounded-2xl shadow-lg" alt="Showcase Pack">
@@ -198,7 +262,6 @@
         </div>
     </section>
 
-    <!-- 3. FOUNDED BY SECTION (Redesigned) -->
     <section class="py-12 px-6 max-w-5xl mx-auto flex flex-col md:flex-row gap-12 md:gap-20 items-center" id="parallax-section" data-observe>
         <div class="flex-1 flex flex-col items-start text-left">
             <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight mb-4 reveal-element" style="animation-delay: 0.1s;">
@@ -218,31 +281,22 @@
         </div>
         
         <div class="flex-shrink-0 w-full max-w-xs rounded-2xl overflow-hidden shadow-lg h-[460px] relative reveal-element" style="animation-delay: 0.5s;">
-            <img id="parallax-img" src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" 
-                 alt="Danial Danish" class="w-full h-[140%] object-cover absolute left-0 top-[-20%] transition-transform duration-75 ease-out">
+            <img id="parallax-img" src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial Danish" class="w-full h-[140%] object-cover absolute left-0 top-[-20%] transition-transform duration-75 ease-out">
         </div>
     </section>
 
-    <!-- 4. TEAM SECTION -->
     <section class="py-12 px-6 max-w-5xl mx-auto border-t border-slate-100" id="team-section" data-observe>
         <div class="flex flex-col md:flex-row gap-12 md:gap-20">
-            
             <div class="flex-shrink-0 w-full md:w-1/4 reveal-element" style="animation-delay: 0.1s;">
-                <h2 class="text-[32px] md:text-[40px] font-serif-custom leading-[1.1] text-[#0D212C] tracking-tight">
-                    Team
-                </h2>
+                <h2 class="text-[32px] md:text-[40px] font-serif-custom leading-[1.1] text-[#0D212C] tracking-tight">Team</h2>
             </div>
-
             <div class="flex-1 grid grid-cols-2 gap-x-12 gap-y-6 text-sm md:text-base reveal-element" style="animation-delay: 0.2s;">
-                <!-- Column 1: Names -->
                 <div class="flex flex-col gap-6">
                     <div class="team-name-hover" data-img="https://images.luviio.com/danialdanish-luviio-founder.JPEG">Danial Danish</div>
                     <div class="team-name-hover" data-img="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=400">Arvydas Gecas</div>
                     <div class="team-name-hover" data-img="https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=400">Dominik Martin</div>
                     <div class="team-name-hover" data-img="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=400">Arma Behnia</div>
                 </div>
-
-                <!-- Column 2: Roles -->
                 <div class="flex flex-col gap-6 text-[#051A24]/60">
                     <div>Founder</div>
                     <div>Senior Designer</div>
@@ -250,22 +304,16 @@
                     <div>Operations</div>
                 </div>
             </div>
-            
         </div>
     </section>
 
-    <!-- 5. PRICING SECTION -->
-    <section class="w-full py-12 px-6 bg-white mt-12" data-observe>
+    <section id="pricing-section" class="w-full py-12 px-6 bg-white mt-12" data-observe>
         <div class="max-w-7xl mx-auto flex flex-col md:items-end">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 w-full md:max-w-4xl">
-                
-                <!-- Card 1 -->
                 <div class="bg-[#051A24] rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-inner reveal-element" style="animation-delay: 0.1s;">
                     <div>
                         <h3 class="text-[22px] font-medium text-[#F6FCFF] mb-4">Monthly Partnership</h3>
-                        <p class="text-[#E0EBF0] text-sm md:text-base leading-relaxed mb-8">
-                            A dedicated creative design team. <br> You work directly with Danial.
-                        </p>
+                        <p class="text-[#E0EBF0] text-sm md:text-base leading-relaxed mb-8">A dedicated creative design team. <br> You work directly with Danial.</p>
                     </div>
                     <div>
                         <div class="mb-6">
@@ -273,69 +321,48 @@
                             <span class="block text-xs uppercase tracking-wider text-[#E0EBF0]/60 mt-1">Monthly</span>
                         </div>
                         <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-                            <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-white text-[#051A24] rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">
-                                Start a chat
-                            </button>
-                            <a href="https://halaskastudio.com/./book" class="text-sm font-medium text-[#E0EBF0] hover:text-white transition-colors">How it works</a>
+                            <button onclick="scrollToBooking()" class="bg-white text-[#051A24] rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">Start a chat</button>
+                            <button onclick="scrollToBooking()" class="text-sm font-medium text-[#E0EBF0] hover:text-white bg-transparent border-0 cursor-pointer transition-colors">How it works</button>
                         </div>
                     </div>
                 </div>
-
-                <!-- Card 2 -->
                 <div class="bg-white border border-slate-100 rounded-[40px] pl-10 pr-10 md:pr-24 pt-10 pb-10 flex flex-col justify-between shadow-[0_4px_16px_rgba(0,0,0,0.08)] reveal-element" style="animation-delay: 0.2s;">
                     <div>
                         <h3 class="text-[22px] font-medium text-[#0D212C] mb-4">Custom Project</h3>
-                        <p class="text-[#051A24]/70 text-sm md:text-base leading-relaxed mb-8">
-                            Fixed scope, fixed timeline. <br> Same team, same standards.
-                        </p>
+                        <p class="text-[#051A24]/70 text-sm md:text-base leading-relaxed mb-8">Fixed scope, fixed timeline. <br> Same team, same standards.</p>
                     </div>
                     <div>
                         <div class="mb-6">
                             <span class="text-2xl font-semibold text-[#0D212C]">RM 500</span>
                             <span class="block text-xs uppercase tracking-wider text-[#051A24]/50 mt-1">Minimum</span>
                         </div>
-                        <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-white text-[#051A24] border-0 rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">
-                            Start a chat
-                        </button>
+                        <button onclick="scrollToBooking()" class="bg-white text-[#051A24] border-0 rounded-full px-7 py-3 text-sm font-medium shadow-btn-secondary hover:bg-slate-50 cursor-pointer w-full sm:w-auto">Start a chat</button>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
 
-    <!-- 6. TESTIMONIAL CAROUSEL -->
     <section class="w-full py-20 bg-white overflow-hidden relative">
         <div class="max-w-7xl mx-auto px-6 mb-12 flex flex-col md:flex-row md:justify-between md:items-end gap-6">
-            <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight max-w-lg">
-                What <span class="font-serif-custom italic">builders</span> say
-            </h2>
+            <h2 class="text-[32px] md:text-[40px] lg:text-[44px] leading-[1.1] text-[#0D212C] tracking-tight max-w-lg">What <span class="font-serif-custom italic">builders</span> say</h2>
             <div class="flex items-center gap-6">
                 <div class="flex items-center gap-2">
                     <div class="flex text-black" id="stars-container"></div>
                     <span class="text-sm font-medium text-slate-950 tracking-tight">Clutch 5/5</span>
                 </div>
                 <div class="flex gap-2">
-                    <button onclick="prevSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer">
-                        <i data-lucide="chevron-left" class="w-5 h-5"></i>
-                    </button>
-                    <button onclick="nextSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer">
-                        <i data-lucide="chevron-right" class="w-5 h-5"></i>
-                    </button>
+                    <button onclick="prevSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer"><i data-lucide="chevron-left" class="w-5 h-5"></i></button>
+                    <button onclick="nextSlide()" class="w-12 h-12 rounded-full border border-[#0D212C]/20 flex items-center justify-center text-[#0D212C] hover:bg-slate-50 transition-colors cursor-pointer"><i data-lucide="chevron-right" class="w-5 h-5"></i></button>
                 </div>
             </div>
         </div>
-
         <div class="w-full px-6 overflow-hidden" id="carousel-viewport">
-            <div class="flex gap-6 carousel-track" id="carousel-track">
-                <!-- Items are populated dynamically -->
-            </div>
+            <div class="flex gap-6 carousel-track" id="carousel-track"></div>
         </div>
     </section>
 
-    <!-- 7. PROJECTS SECTION -->
     <section id="projects-section" class="max-w-[1200px] mx-auto px-6 py-12 flex flex-col gap-16 md:gap-20 bg-white">
-        
         <article class="w-full flex flex-col gap-6" data-observe>
             <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
                 <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">evr</h3>
@@ -345,7 +372,6 @@
                 <img src="https://motionsites.ai/assets/hero-evr-ventures-preview-DZxeVFEX.gif" alt="evr project preview" class="w-full h-full object-cover">
             </div>
         </article>
-
         <article class="w-full flex flex-col gap-6" data-observe>
             <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
                 <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">Automation Machines</h3>
@@ -355,7 +381,6 @@
                 <img src="https://motionsites.ai/assets/hero-automation-machines-preview-DlTveRIN.gif" alt="Automation Machines preview" class="w-full h-full object-cover">
             </div>
         </article>
-
         <article class="w-full flex flex-col gap-6" data-observe>
             <div class="ml-20 md:ml-28 flex flex-col reveal-element" style="animation-delay: 0.1s;">
                 <h3 class="text-2xl md:text-3xl font-semibold text-[#051A24] font-serif-custom tracking-tight mb-1">xPortfolio</h3>
@@ -367,14 +392,12 @@
         </article>
     </section>
 
-    <!-- 8. PARTNER SECTION -->
+    <!-- Partner Section -->
     <section class="w-full py-12 px-6 bg-white" id="partner-section" data-observe>
         <div id="interactive-partner-container" class="max-w-7xl mx-auto py-48 rounded-[40px] bg-white border border-slate-100 shadow-sm relative overflow-hidden flex flex-col items-center justify-center text-center cursor-crosshair reveal-element" style="animation-delay: 0.1s;">
             <div class="relative z-10 flex flex-col items-center select-none">
-                <h2 class="text-[48px] md:text-[64px] lg:text-[80px] font-serif-custom leading-none text-[#0D212C] mb-12 tracking-tight">
-                    Partner with us
-                </h2>
-                <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full pl-3 pr-7 py-2.5 font-medium flex items-center gap-3 shadow-btn-primary hover:scale-[1.01] transition-transform duration-200 cursor-pointer text-sm md:text-base">
+                <h2 class="text-[48px] md:text-[64px] lg:text-[80px] font-serif-custom leading-none text-[#0D212C] mb-12 tracking-tight">Partner with us</h2>
+                <button onclick="scrollToBooking()" class="bg-[#051A24] text-white rounded-full pl-3 pr-7 py-2.5 font-medium flex items-center gap-3 shadow-btn-primary hover:scale-[1.01] transition-transform duration-200 cursor-pointer text-sm md:text-base relative z-50">
                     <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial avatar" class="w-10 h-10 rounded-full object-cover border border-white/10">
                     <span>Start chat with Danial</span>
                 </button>
@@ -382,128 +405,251 @@
         </div>
     </section>
 
-    <!-- 9. REDESIGNED FOOTER -->
-    <footer class="w-full px-6 pt-24 pb-8 bg-white border-t border-slate-100" id="site-footer">
-        <div class="max-w-7xl mx-auto">
+    <!-- Native Booking Section -->
+    <section id="native-booking-section" class="max-w-6xl mx-auto px-6 py-16 bg-white border border-slate-100 rounded-[32px] my-12 shadow-sm transition-all duration-500">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
             
-            <!-- Top Section: CTA and Navigation -->
-            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-24">
-                <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium shadow-btn-primary hover:scale-[1.02] transition-transform duration-300 text-sm cursor-pointer">
-                    Book a call
-                </button>
-                
-                <div class="flex gap-16 md:gap-24">
-                    <div class="flex flex-col gap-3">
-                        <a href="#" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Services</a>
-                        <a href="#projects-section" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Work</a>
-                        <a href="#" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">About</a>
+            <div class="lg:col-span-4 border-b lg:border-b-0 lg:border-r border-slate-100 pb-6 lg:pb-0 lg:pr-8">
+                <div class="flex items-center gap-3 mb-4">
+                    <img src="https://images.luviio.com/danialdanish-luviio-founder.JPEG" alt="Danial Danish" class="w-10 h-10 rounded-full object-cover">
+                    <div>
+                        <h4 class="font-medium text-sm text-slate-800">Danial Danish</h4>
+                        <p class="text-xs text-slate-400">Design Partner</p>
                     </div>
-                    <div class="flex flex-col gap-3">
-                        <a href="https://x.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1">
-                            x.com <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i>
-                        </a>
-                        <a href="https://linkedin.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1">
-                            LinkedIn <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i>
-                        </a>
+                </div>
+                <h3 class="text-2xl font-semibold tracking-tight text-[#0D212C] mb-2">Intro with Danial</h3>
+                <p class="text-sm text-slate-500 leading-relaxed mb-6">
+                    Let's discuss how we can help you. Trusted by Google, Immutable, Infinex, Ogilvy and 40+ startups.
+                </p>
+                
+                <div class="flex flex-col gap-3 text-sm text-slate-600">
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="clock" class="w-4 h-4 text-slate-400"></i>
+                        <span>30m</span>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="video" class="w-4 h-4 text-slate-400"></i>
+                        <select id="meeting-type-select" class="meeting-select">
+                            <option value="Google Meet">Google Meet</option>
+                            <option value="Whatsapp">Whatsapp</option>
+                            <option value="Facetime Audio">Facetime Audio</option>
+                        </select>
+                    </div>
+                    <div class="flex items-center gap-3">
+                        <i data-lucide="globe" class="w-4 h-4 text-slate-400"></i>
+                        <select id="timezone-select" class="tz-select">
+                            <option value="Asia/Kuala_Lumpur">Asia/Kuala Lumpur</option>
+                            <option value="Asia/Singapore">Asia/Singapore</option>
+                            <option value="Asia/Tokyo">Asia/Tokyo</option>
+                            <option value="Asia/Hong_Kong">Asia/Hong_Kong</option>
+                            <option value="Asia/Dubai">Asia/Dubai</option>
+                            <option value="Europe/London">Europe/London</option>
+                            <option value="Europe/Berlin">Europe/Berlin</option>
+                            <option value="America/New_York">America/New_York</option>
+                            <option value="America/Chicago">America/Chicago</option>
+                            <option value="America/Denver">America/Denver</option>
+                            <option value="America/Los_Angeles">America/Los_Angeles</option>
+                            <option value="Australia/Sydney">Australia/Sydney</option>
+                            <option value="Pacific/Auckland">Pacific/Auckland</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="booking-datetime-summary" class="hidden mt-6 pt-6 border-t border-slate-100">
+                    <div class="flex items-center gap-3 text-sm text-slate-700 font-medium bg-slate-50 p-3 rounded-xl">
+                        <i data-lucide="calendar" class="w-4 h-4 text-blue-600"></i>
+                        <div>
+                            <p id="summary-date"></p>
+                            <p id="summary-time" class="text-xs text-slate-500 font-normal"></p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Middle Section: Large Artistic Name Image (Centered) -->
+            <div class="lg:col-span-8">
+                
+                <!-- Step 1: Date & Time Selection -->
+                <div id="booking-step-slots" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    
+                    <div>
+                        <div class="flex items-center justify-between mb-6">
+                            <span id="calendar-month-label" class="font-medium text-base text-slate-900"></span>
+                            <div class="flex gap-2">
+                                <button onclick="changeMonth(-1)" class="p-1 hover:bg-slate-50 rounded-md text-slate-400 cursor-pointer"><i data-lucide="chevron-left" class="w-4 h-4"></i></button>
+                                <button onclick="changeMonth(1)" class="p-1 hover:bg-slate-50 rounded-md text-slate-400 cursor-pointer"><i data-lucide="chevron-right" class="w-4 h-4"></i></button>
+                            </div>
+                        </div>
+                        
+                        <div class="grid grid-cols-7 gap-y-3 text-center text-xs font-medium text-slate-400 mb-2 uppercase tracking-wider">
+                            <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+                        </div>
+                        
+                        <div id="calendar-grid" class="grid grid-cols-7 gap-y-2 text-sm text-center font-medium"></div>
+                    </div>
+                    
+                    <div class="flex flex-col">
+                        <div class="flex items-center justify-between mb-4">
+                            <span id="target-day-label" class="font-medium text-slate-900"></span>
+                        </div>
+                        <div id="time-slots-container" class="flex flex-col gap-2 max-h-[280px] overflow-y-auto pr-1"></div>
+                        <p id="no-slots-msg" class="text-sm text-slate-400 text-center py-8 hidden">Select a date to view available times</p>
+                    </div>
+                </div>
+
+                <!-- Step 2: Details Form -->
+                <div id="booking-step-form" class="hidden flex flex-col gap-5">
+                    
+                    <div id="form-summary-bar" class="bg-slate-50 p-4 rounded-xl mb-2 flex items-center justify-between">
+                        <div class="flex items-center gap-3 text-sm text-slate-700">
+                            <i data-lucide="calendar" class="w-4 h-4 text-blue-600"></i>
+                            <span id="form-summary-text" class="font-medium"></span>
+                        </div>
+                        <button onclick="showStepSlots()" class="text-xs font-medium text-blue-600 hover:text-blue-800 cursor-pointer bg-transparent border-0">Change</button>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Your name *</label>
+                        <input id="booking-name" type="text" placeholder="John Doe" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Email address *</label>
+                        <input id="booking-email" type="email" placeholder="john@example.com" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">Business name *</label>
+                        <input id="booking-business" type="text" placeholder="e.g. Anthropic" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-1">What can we help with? *</label>
+                        <textarea id="booking-help" rows="3" placeholder="e.g. Agentic crypto platform" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-slate-900 transition-colors bg-white text-sm text-slate-800 resize-none"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-slate-700 mb-3">How did you hear about us? *</label>
+                        <div class="flex flex-col gap-2.5 text-sm text-slate-700 font-medium">
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="referral" class="w-4 h-4 accent-slate-900"> Referral</label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="twitter" class="w-4 h-4 accent-slate-900"> X / Twitter</label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="linkedin" class="w-4 h-4 accent-slate-900"> LinkedIn</label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="ai" class="w-4 h-4 accent-slate-900"> AI</label>
+                            <label class="flex items-center gap-3 cursor-pointer"><input type="radio" name="source" value="other" class="w-4 h-4 accent-slate-900"> Other</label>
+                        </div>
+                    </div>
+
+                    <p class="text-xs text-slate-400 mt-2">
+                        By proceeding, you agree to luviio.com's <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Terms</a> and <a href="#/policy" onclick="event.preventDefault(); navigateTo('policy')" class="underline cursor-pointer text-slate-500 hover:text-slate-700">Privacy Policy</a>.
+                    </p>
+
+                    <div class="flex items-center justify-end gap-4 mt-4 pt-4 border-t border-slate-100">
+                        <button onclick="showStepSlots()" class="px-5 py-2.5 text-sm font-medium text-slate-500 hover:text-slate-800 cursor-pointer bg-transparent border-0 transition-colors">Back</button>
+                        <button onclick="submitBooking()" class="px-6 py-2.5 text-sm font-medium bg-[#051A24] text-white rounded-xl shadow-md hover:bg-slate-800 transition-colors cursor-pointer">Confirm Booking</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Success State -->
+                <div id="booking-step-success" class="hidden flex flex-col items-center justify-center py-16 text-center">
+                    <div class="w-20 h-20 rounded-full bg-emerald-50 flex items-center justify-center mb-6">
+                        <svg class="w-10 h-10 text-emerald-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12" class="check-animated"></polyline>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-semibold tracking-tight text-[#0D212C] mb-2">Booking Confirmed!</h3>
+                    <p class="text-sm text-slate-500 leading-relaxed max-w-sm mb-6" id="success-details"></p>
+                    <button onclick="resetBooking()" class="px-6 py-2.5 text-sm font-medium bg-slate-100 text-slate-700 rounded-xl hover:bg-slate-200 transition-colors cursor-pointer border-0">Book another slot</button>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <footer class="w-full px-6 pt-24 pb-8 bg-white border-t border-slate-100" id="site-footer">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-24">
+                <button onclick="scrollToBooking()" class="bg-[#051A24] text-white rounded-full px-7 py-3 font-medium shadow-btn-primary hover:scale-[1.02] transition-transform duration-300 text-sm cursor-pointer">Book a call</button>
+                <div class="flex gap-16 md:gap-24">
+                    <div class="flex flex-col gap-3">
+                        <button onclick="scrollToBooking()" class="text-base text-left bg-transparent border-0 cursor-pointer text-[#051A24] hover:opacity-70 transition-opacity">Services</button>
+                        <a href="#projects-section" class="text-base text-[#051A24] hover:opacity-70 transition-opacity">Work</a>
+                        <button onclick="document.getElementById('parallax-section').scrollIntoView({behavior: 'smooth'})" class="text-base text-left bg-transparent border-0 cursor-pointer text-[#051A24] hover:opacity-70 transition-opacity">About</button>
+                    </div>
+                    <div class="flex flex-col gap-3">
+                        <a href="#/terms" onclick="event.preventDefault(); navigateTo('terms')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Terms</a>
+                        <a href="#/policy" onclick="event.preventDefault(); navigateTo('policy')" class="text-base text-[#051A24] hover:opacity-70 transition-opacity no-underline">Privacy Policy</a>
+                        <a href="https://x.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">x.com <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
+                        <a href="https://linkedin.com" target="_blank" class="text-base text-[#051A24] hover:opacity-70 transition-opacity flex items-center gap-1 no-underline">LinkedIn <i data-lucide="arrow-up-right" class="w-4 h-4 opacity-60"></i></a>
+                    </div>
+                </div>
+            </div>
             <div class="flex justify-center mb-24 select-none">
                 <img src="https://images.luviio.com/LUVIOO-03.png" alt="Luviio" class="w-full max-w-4xl h-auto object-contain">
             </div>
-
-            <!-- Bottom Section: Copyright and Location -->
             <div class="flex flex-col md:flex-row justify-between items-start md:items-center text-sm text-[#051A24] tracking-tight opacity-70 gap-4">
                 <div>© Luviio Studio</div>
                 <div>Kedah, Malaysia</div>
             </div>
-            
         </div>
     </footer>
 
-    <!-- 10. FIXED BOTTOM NAV -->
-    <div id="bottom-nav" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/90 backdrop-blur-md rounded-full px-8 py-2.5 flex items-center gap-8 shadow-[0px_0px_0px_0.5px_rgba(0,0,0,0.05),0px_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 whitespace-nowrap">
-        <span class="font-serif-custom text-2xl font-semibold text-[#051A24] tracking-tighter select-none">D</span>
-        <button onclick="window.location.href='https://halaskastudio.com/./book'" class="bg-[#051A24] text-white rounded-full px-5 py-2 text-sm font-medium shadow-btn-primary hover:bg-[#0d212c] cursor-pointer">
-            Start a chat
-        </button>
+    <!-- Bottom Nav -->
+    <div id="bottom-nav" class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 bg-white/95 backdrop-blur-md rounded-full pl-3 pr-2.5 py-2.5 flex items-center justify-between gap-4 shadow-[0px_0px_0px_0.5px_rgba(0,0,0,0.05),0px_10px_30px_rgba(0,0,0,0.08)] border border-slate-100/80 whitespace-nowrap">
+        <a href="#" onclick="event.preventDefault(); window.scrollTo({top:0,behavior:'smooth'})" class="flex items-center gap-2 no-underline">
+            <img src="https://images.luviio.com/luviio-crop-img.png" alt="Luviio" class="w-8 h-8 rounded-full object-cover">
+        </a>
+        
+        <div class="flex items-center gap-5 font-medium text-[15px] text-slate-800">
+            <a href="#projects-section" class="hover:text-black transition-colors no-underline">Work</a>
+            <a href="#pricing-section" class="hover:text-black transition-colors no-underline">Pricing</a>
+        </div>
+        
+        <button onclick="scrollToBooking()" class="bg-[#2563EB] text-white rounded-full px-5 py-2 text-sm font-medium shadow-blue-btn hover:bg-blue-700 cursor-pointer transition-all">Book a call</button>
     </div>
 
-    <!-- SCRIPT INFRASTRUCTURE AND RENDER CONTROLLERS -->
     <script>
-        // Initialize Icon Assembly
+        // Initialize Icons
         lucide.createIcons();
 
-        // Populate Clutch Rating Stars
+        // Populate Stars
         const starContainer = document.getElementById('stars-container');
         for(let i=0; i<5; i++){
             starContainer.innerHTML += `<i data-lucide="star" class="w-5 h-5 fill-black text-black"></i>`;
         }
         lucide.createIcons({attrs: {'class': 'w-5 h-5 fill-black text-black'}, nameAttr: 'data-lucide'});
 
-        // Scroll reveal controller using IntersectionObserver API
-        const observerOptions = { threshold: 0.1 };
+        // Intersection Observer
         const viewObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.querySelectorAll('.reveal-element').forEach(el => {
-                        el.classList.add('animate-fade-in-up');
-                    });
+                    entry.target.querySelectorAll('.reveal-element').forEach(el => el.classList.add('animate-fade-in-up'));
                     observer.unobserve(entry.target);
                 }
             });
-        }, observerOptions);
+        }, { threshold: 0.1 });
+        document.querySelectorAll('[data-observe]').forEach(section => viewObserver.observe(section));
 
-        document.querySelectorAll('[data-observe]').forEach(section => {
-            viewObserver.observe(section);
-        });
-
-        // Parallax scroll effect tracker for Founder Image
+        // Parallax
         const parallaxImg = document.getElementById('parallax-img');
         const parallaxSection = document.getElementById('parallax-section');
-        
         window.addEventListener('scroll', () => {
             if (!parallaxSection || !parallaxImg) return;
             const rect = parallaxSection.getBoundingClientRect();
-            const viewportHeight = window.innerHeight;
-            
-            if (rect.top < viewportHeight && rect.bottom > 0) {
-                const totalDistance = viewportHeight + rect.height;
-                const currentProgress = (viewportHeight - rect.top) / totalDistance;
-                const boundedProgress = Math.max(0, Math.min(1, currentProgress));
-                const yOffset = (boundedProgress - 0.5) * 200; 
-                
-                window.requestAnimationFrame(() => {
-                    parallaxImg.style.transform = `translateY(${yOffset}px) scale(1.05)`;
-                });
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const progress = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+                const bounded = Math.max(0, Math.min(1, progress));
+                requestAnimationFrame(() => { parallaxImg.style.transform = `translateY(${(bounded - 0.5) * 200}px) scale(1.05)`; });
             }
         }, { passive: true });
 
-        // Team Hover Image Tracker
+        // Team Hover
         const teamHoverImg = document.getElementById('team-hover-img');
-        const teamNames = document.querySelectorAll('.team-name-hover');
-
-        teamNames.forEach(name => {
-            name.addEventListener('mouseenter', (e) => {
-                teamHoverImg.src = name.getAttribute('data-img');
-                teamHoverImg.classList.add('active');
-            });
-
-            name.addEventListener('mousemove', (e) => {
-                const offsetPosX = e.clientX + 20;
-                const offsetPosY = e.clientY - 80;
-                teamHoverImg.style.left = `${offsetPosX}px`;
-                teamHoverImg.style.top = `${offsetPosY}px`;
-            });
-
-            name.addEventListener('mouseleave', (e) => {
-                teamHoverImg.classList.remove('active');
-            });
+        document.querySelectorAll('.team-name-hover').forEach(name => {
+            name.addEventListener('mouseenter', () => { teamHoverImg.src = name.dataset.img; teamHoverImg.classList.add('active'); });
+            name.addEventListener('mousemove', (e) => { teamHoverImg.style.left = `${e.clientX+20}px`; teamHoverImg.style.top = `${e.clientY-80}px`; });
+            name.addEventListener('mouseleave', () => { teamHoverImg.classList.remove('active'); });
         });
 
-        // Testimonial Data & Carousel Pipeline
+        // Testimonials Carousel
         const testimonials = [
             { name: "Marcus Anderson", role: "CEO", company: "Data.storage", quote: "With very little guidance team delivered designs that were consistently spot on...", avatar: "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=150" },
             { name: "alexwu", role: "Founder", company: "Nexgate", quote: "Danial led the creation of our best fundraising deck to date!...", avatar: "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&w=150" },
@@ -511,91 +657,46 @@
             { name: "Rachel Foster", role: "Co-founder", company: "Nexus Labs", quote: "The design quality exceeded our expectations...", avatar: "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&w=150" },
             { name: "David Zhang", role: "Head of Design", company: "Paradigm Labs", quote: "Incredible work from start to finish...", avatar: "https://images.pexels.com/photos/1222271/pexels-photo-1222271.jpeg?auto=compress&cs=tinysrgb&w=150" }
         ];
-
         const carouselList = [...testimonials, ...testimonials, ...testimonials];
         const carouselTrack = document.getElementById('carousel-track');
-        let cardWidthDesktop = 427.5;
-        const gapWidth = 24;
-        let currentIndex = testimonials.length; 
-        let isTransitioning = true;
-        let autoplayTimer;
+        let cardWidthDesktop = 427.5; const gapWidth = 24;
+        let currentIndex = testimonials.length; let isTransitioning = true; let autoplayTimer;
 
         function buildCarousel() {
+            if (!carouselTrack) return;
             carouselTrack.innerHTML = '';
             carouselList.forEach((item) => {
                 const card = document.createElement('div');
                 card.className = "bg-white border border-slate-50 rounded-[32px] md:rounded-[40px] shadow-[0_4px_16px_rgba(0,0,0,0.08)] px-6 md:pl-10 md:pr-24 py-8 shrink-0 flex flex-col justify-between h-[260px] select-none transition-transform duration-300 hover:scale-[0.99]";
-                
-                if(window.innerWidth < 768) {
-                    card.style.width = 'calc(100vw - 48px)';
-                } else {
-                    card.style.width = `${cardWidthDesktop}px`;
-                }
-
-                card.innerHTML = `
-                    <div>
-                        <svg class="w-8 h-8 text-[#0D212C]/10 mb-3 fill-current" viewBox="0 0 32 32">
-                            <path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z" />
-                        </svg>
-                        <p class="text-base text-[#0D212C] leading-relaxed line-clamp-3 tracking-tight">"${item.quote}"</p>
-                    </div>
-                    <div class="flex items-center gap-4 mt-4">
-                        <img src="${item.avatar}" alt="${item.name}" class="w-12 h-12 rounded-full object-cover">
-                        <div>
-                            <h4 class="font-semibold text-sm text-[#0D212C]">${item.name}</h4>
-                            <p class="text-xs text-[#273C46] flex items-center gap-1 mt-0.5"><span>→</span> ${item.role}, ${item.company}</p>
-                        </div>
-                    </div>
-                `;
+                card.style.width = window.innerWidth < 768 ? 'calc(100vw - 48px)' : `${cardWidthDesktop}px`;
+                card.innerHTML = `<div><svg class="w-8 h-8 text-[#0D212C]/10 mb-3 fill-current" viewBox="0 0 32 32"><path d="M10 8c-3.3 0-6 2.7-6 6v10h10V14H8c0-1.1.9-2 2-2h2V8h-2zm14 0c-3.3 0-6 2.7-6 6v10h10V14h-6c0-1.1.9-2 2-2h2V8h-2z" /></svg><p class="text-base text-[#0D212C] leading-relaxed line-clamp-3 tracking-tight">"${item.quote}"</p></div><div class="flex items-center gap-4 mt-4"><img src="${item.avatar}" alt="${item.name}" class="w-12 h-12 rounded-full object-cover"><div><h4 class="font-semibold text-sm text-[#0D212C]">${item.name}</h4><p class="text-xs text-[#273C46] flex items-center gap-1 mt-0.5"><span>→</span> ${item.role}, ${item.company}</p></div></div>`;
                 carouselTrack.appendChild(card);
             });
             updateCarouselPosition(false);
         }
-
         function updateCarouselPosition(animate = true) {
-            const widthFactor = window.innerWidth < 768 ? (window.innerWidth - 48) : cardWidthDesktop;
-            const displacement = currentIndex * (widthFactor + gapWidth);
+            if (!carouselTrack) return;
+            const w = window.innerWidth < 768 ? (window.innerWidth - 48) : cardWidthDesktop;
             carouselTrack.style.transition = animate ? 'transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)' : 'none';
-            carouselTrack.style.transform = `translateX(-${displacement}px)`;
+            carouselTrack.style.transform = `translateX(-${currentIndex * (w + gapWidth)}px)`;
         }
-
-        function nextSlide() {
-            if (!isTransitioning) return;
-            currentIndex++;
-            updateCarouselPosition(true);
+        function nextSlide() { currentIndex++; updateCarouselPosition(true); }
+        function prevSlide() { currentIndex--; updateCarouselPosition(true); }
+        if (carouselTrack) {
+            carouselTrack.addEventListener('transitionend', () => {
+                if (currentIndex >= testimonials.length * 2) { currentIndex -= testimonials.length; updateCarouselPosition(false); }
+                else if (currentIndex < testimonials.length) { currentIndex += testimonials.length; updateCarouselPosition(false); }
+            });
+            carouselTrack.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+            carouselTrack.addEventListener('mouseleave', () => { autoplayTimer = setInterval(nextSlide, 3000); });
         }
-
-        function prevSlide() {
-            if (!isTransitioning) return;
-            currentIndex--;
-            updateCarouselPosition(true);
-        }
-
-        carouselTrack.addEventListener('transitionend', () => {
-            if (currentIndex >= testimonials.length * 2) {
-                currentIndex -= testimonials.length;
-                updateCarouselPosition(false);
-            } else if (currentIndex < testimonials.length) {
-                currentIndex += testimonials.length;
-                updateCarouselPosition(false);
-            }
-        });
-
-        function startAutoplay() {
-            autoplayTimer = setInterval(nextSlide, 3000);
-        }
-        function stopAutoplay() {
-            clearInterval(autoplayTimer);
-        }
-
-        carouselTrack.addEventListener('mouseenter', stopAutoplay);
-        carouselTrack.addEventListener('mouseleave', startAutoplay);
-        window.addEventListener('resize', () => { buildCarousel(); });
-
+        window.addEventListener('resize', buildCarousel);
         buildCarousel();
-        startAutoplay();
+        autoplayTimer = setInterval(nextSlide, 3000);
 
-        // PARTNER MOUSE TRAIL SPATTER SCHEDULER
+        // ==========================================
+        // PARTNER CURSOR TRAIL EFFECT
+        // ==========================================
         const partnerContainer = document.getElementById('interactive-partner-container');
         const spatterThumbnails = [
             "https://motionsites.ai/assets/hero-space-voyage-preview-eECLH3Yc.gif",
@@ -607,62 +708,277 @@
             "https://motionsites.ai/assets/hero-orbit-web3-preview-BXt4OttD.gif",
             "https://motionsites.ai/assets/hero-nexora-preview-cx5HmUgo.gif"
         ];
-        let lastSpatterTime = 0;
-
-        partnerContainer.addEventListener('mousemove', (e) => {
-            const currentTime = Date.now();
-            if (currentTime - lastSpatterTime < 80) return; 
-            lastSpatterTime = currentTime;
-
-            const rect = partnerContainer.getBoundingClientRect();
-            const posX = e.clientX - rect.left;
-            const posY = e.clientY - rect.top;
-
-            const randomAngle = Math.floor(Math.random() * 20) - 10; 
-            const randomThumb = spatterThumbnails[Math.floor(Math.random() * spatterThumbnails.length)];
-
-            const particle = document.createElement('div');
-            particle.className = "absolute w-24 h-16 md:w-36 md:h-24 rounded-lg overflow-hidden shadow-md pointer-events-none z-0";
-            particle.style.left = `${posX}px`;
-            particle.style.top = `${posY}px`;
-            particle.style.transform = `translate(-50%, -50%) rotate(${randomAngle}deg) scale(1)`;
-            particle.style.transition = "transform 1000ms cubic-bezier(0.4, 0, 0.2, 1), opacity 1000ms cubic-bezier(0.4, 0, 0.2, 1)";
-            
-            particle.innerHTML = `<img src="${randomThumb}" class="w-full h-full object-cover">`;
-            partnerContainer.appendChild(particle);
-
-            window.requestAnimationFrame(() => {
+        
+        let lastTrailTime = 0;
+        const trailThrottle = 120; // ms between spawning new images
+        
+        if(partnerContainer) {
+            partnerContainer.addEventListener('mousemove', (e) => {
+                const now = Date.now();
+                if (now - lastTrailTime < trailThrottle) return;
+                lastTrailTime = now;
+                
+                const rect = partnerContainer.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                const img = document.createElement('img');
+                img.src = spatterThumbnails[Math.floor(Math.random() * spatterThumbnails.length)];
+                img.className = 'partner-trail';
+                
+                const size = 100 + Math.random() * 80;
+                img.style.width = `${size}px`;
+                img.style.height = `${size}px`;
+                img.style.left = `${x - size/2}px`;
+                img.style.top = `${y - size/2}px`;
+                
+                partnerContainer.appendChild(img);
+                
+                // Trigger visibility
+                requestAnimationFrame(() => {
+                    requestAnimationFrame(() => {
+                        img.classList.add('visible');
+                    });
+                });
+                
+                // Fade out and remove
                 setTimeout(() => {
-                    particle.style.transform = `translate(-50%, -50%) rotate(${randomAngle}deg) scale(0.3)`;
-                    particle.style.opacity = "0";
-                }, 50);
+                    img.classList.remove('visible');
+                    img.classList.add('fade-out');
+                    setTimeout(() => img.remove(), 600);
+                }, 800);
             });
+        }
 
-            setTimeout(() => {
-                particle.remove();
-            }, 1050);
+        // Scroll to Booking
+        function scrollToBooking() {
+            document.getElementById('native-booking-section').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // ==========================================
+        // BOOKING FORM LOGIC
+        // ==========================================
+        let currentMonth = new Date().getMonth();
+        let currentYear = new Date().getFullYear();
+        let selectedDate = null;
+        let selectedTime = null;
+        let selectedTz = 'Asia/Kuala_Lumpur';
+        let selectedMeetingType = 'Google Meet';
+
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        const dayNames = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+
+        document.getElementById('timezone-select').addEventListener('change', (e) => {
+            selectedTz = e.target.value;
+            if (selectedDate) renderTimeSlots(selectedDate);
         });
 
-        // BOTTOM NAV VISIBILITY CONTROLLER
-        const bottomNav = document.getElementById('bottom-nav');
-        const partnerSection = document.getElementById('partner-section');
-        const siteFooter = document.getElementById('site-footer');
+        document.getElementById('meeting-type-select').addEventListener('change', (e) => {
+            selectedMeetingType = e.target.value;
+        });
 
-        const navVisibilityObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    bottomNav.classList.add('nav-hidden');
-                } else {
-                    bottomNav.classList.remove('nav-hidden');
+        function changeMonth(delta) {
+            currentMonth += delta;
+            if (currentMonth > 11) { currentMonth = 0; currentYear++; }
+            if (currentMonth < 0) { currentMonth = 11; currentYear--; }
+            renderCalendar();
+        }
+
+        function renderCalendar() {
+            const grid = document.getElementById('calendar-grid');
+            grid.innerHTML = '';
+            document.getElementById('calendar-month-label').innerHTML = `${monthNames[currentMonth]} <span class="text-slate-400 font-normal">${currentYear}</span>`;
+
+            const firstDay = new Date(currentYear, currentMonth, 1).getDay();
+            const daysInMonth = new Date(currentYear, currentMonth + 1, 0).getDate();
+            const today = new Date(); today.setHours(0,0,0,0);
+
+            for (let i = 0; i < firstDay; i++) {
+                grid.innerHTML += `<div class="py-2"></div>`;
+            }
+
+            for (let d = 1; d <= daysInMonth; d++) {
+                const dateObj = new Date(currentYear, currentMonth, d);
+                dateObj.setHours(0,0,0,0);
+                const isPast = dateObj < today;
+                const isSunday = dateObj.getDay() === 0;
+                const isSelected = selectedDate && dateObj.getTime() === selectedDate.getTime();
+                
+                const btn = document.createElement('button');
+                btn.textContent = d;
+                btn.className = `py-2 rounded-lg cursor-pointer transition-colors text-slate-800 hover:bg-slate-50`;
+                
+                if (isPast || isSunday) {
+                    btn.className = 'py-2 text-slate-200 cursor-default';
+                    btn.disabled = true;
+                } else if (isSelected) {
+                    btn.className = 'py-2 bg-[#051A24] text-white rounded-lg cursor-pointer font-semibold shadow-sm';
                 }
-            });
-        }, { 
-            threshold: 0.1, 
-            rootMargin: "0px 0px -50px 0px" 
-        });
+                
+                if (!isPast && !isSunday) {
+                    btn.onclick = () => selectDate(dateObj);
+                }
+                grid.appendChild(btn);
+            }
+        }
 
-        navVisibilityObserver.observe(partnerSection);
-        navVisibilityObserver.observe(siteFooter);
+        function selectDate(dateObj) {
+            selectedDate = dateObj;
+            selectedTime = null;
+            renderCalendar();
+            renderTimeSlots(dateObj);
+            
+            const dayName = dayNames[dateObj.getDay()];
+            document.getElementById('target-day-label').innerHTML = `${dayName} <span class="text-slate-400 font-normal">${dateObj.getDate()}</span>`;
+        }
+
+        function renderTimeSlots(dateObj) {
+            const container = document.getElementById('time-slots-container');
+            const noMsg = document.getElementById('no-slots-msg');
+            container.innerHTML = '';
+            
+            const now = new Date();
+            const isToday = dateObj.toDateString() === now.toDateString();
+            
+            const slots = [];
+            for (let h = 8; h <= 20; h++) {
+                for (let m = 0; m < 60; m += 30) {
+                    if (h === 20 && m > 0) break;
+                    const slotDate = new Date(dateObj);
+                    slotDate.setHours(h, m, 0, 0);
+                    if (isToday && slotDate <= now) continue;
+                    
+                    const formatted = slotDate.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: selectedTz });
+                    slots.push({ date: slotDate, label: formatted });
+                }
+            }
+
+            if (slots.length === 0) {
+                noMsg.classList.remove('hidden');
+                noMsg.textContent = 'No available slots for this date';
+                return;
+            }
+            noMsg.classList.add('hidden');
+
+            slots.forEach(slot => {
+                const btn = document.createElement('button');
+                btn.textContent = slot.label;
+                btn.className = 'time-slot-btn w-full py-3 px-4 border border-slate-200 rounded-xl font-medium text-slate-800 hover:border-slate-900 transition-colors text-center bg-white cursor-pointer';
+                btn.onclick = () => selectTimeSlot(slot.label, slot.date, btn);
+                container.appendChild(btn);
+            });
+        }
+
+        function selectTimeSlot(label, dateObj, btn) {
+            selectedTime = { label, date: dateObj };
+            document.querySelectorAll('.time-slot-btn').forEach(b => b.classList.remove('selected'));
+            btn.classList.add('selected');
+            
+            const summarySection = document.getElementById('booking-datetime-summary');
+            summarySection.classList.remove('hidden');
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', timeZone: selectedTz };
+            document.getElementById('summary-date').textContent = dateObj.toLocaleDateString('en-US', options);
+            
+            const endTime = new Date(dateObj.getTime() + 30*60000);
+            const startTimeStr = dateObj.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: selectedTz });
+            const endTimeStr = endTime.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true, timeZone: selectedTz });
+            document.getElementById('summary-time').textContent = `${startTimeStr} - ${endTimeStr}`;
+
+            setTimeout(() => showStepForm(), 400);
+        }
+
+        function showStepSlots() {
+            document.getElementById('booking-step-slots').classList.remove('hidden');
+            document.getElementById('booking-step-form').classList.add('hidden');
+            document.getElementById('booking-step-success').classList.add('hidden');
+        }
+
+        function showStepForm() {
+            document.getElementById('booking-step-slots').classList.add('hidden');
+            document.getElementById('booking-step-form').classList.remove('hidden');
+            document.getElementById('booking-step-success').classList.add('hidden');
+            
+            const options = { weekday: 'long', month: 'long', day: 'numeric', timeZone: selectedTz };
+            const dateStr = selectedTime.date.toLocaleDateString('en-US', options);
+            document.getElementById('form-summary-text').textContent = `${dateStr} at ${selectedTime.label} (${selectedMeetingType})`;
+        }
+
+        function submitBooking() {
+            const name = document.getElementById('booking-name').value.trim();
+            const email = document.getElementById('booking-email').value.trim();
+            const business = document.getElementById('booking-business').value.trim();
+            const help = document.getElementById('booking-help').value.trim();
+            const source = document.querySelector('input[name="source"]:checked');
+
+            if (!name || !email || !business || !help || !source) {
+                if(!name) document.getElementById('booking-name').style.borderColor = '#ef4444';
+                if(!email) document.getElementById('booking-email').style.borderColor = '#ef4444';
+                if(!business) document.getElementById('booking-business').style.borderColor = '#ef4444';
+                if(!help) document.getElementById('booking-help').style.borderColor = '#ef4444';
+                return;
+            }
+
+            ['booking-name','booking-email','booking-business','booking-help'].forEach(id => document.getElementById(id).style.borderColor = '');
+
+            document.getElementById('booking-step-form').classList.add('hidden');
+            document.getElementById('booking-step-success').classList.remove('hidden');
+            
+            const options = { weekday: 'long', month: 'long', day: 'numeric', timeZone: selectedTz };
+            const dateStr = selectedTime.date.toLocaleDateString('en-US', options);
+            document.getElementById('success-details').textContent = `Your meeting via ${selectedMeetingType} is set for ${dateStr} at ${selectedTime.label}. A confirmation will be sent to ${email}.`;
+        }
+
+        function resetBooking() {
+            selectedDate = null; selectedTime = null;
+            document.getElementById('booking-datetime-summary').classList.add('hidden');
+            document.getElementById('booking-name').value = '';
+            document.getElementById('booking-email').value = '';
+            document.getElementById('booking-business').value = '';
+            document.getElementById('booking-help').value = '';
+            document.querySelectorAll('input[name="source"]').forEach(r => r.checked = false);
+            showStepSlots();
+            renderCalendar();
+            document.getElementById('time-slots-container').innerHTML = '';
+            document.getElementById('no-slots-msg').classList.remove('hidden');
+            document.getElementById('no-slots-msg').textContent = 'Select a date to view available times';
+            document.getElementById('target-day-label').textContent = '';
+        }
+
+        renderCalendar();
+
+        // ==========================================
+        // PAGE ROUTING (TERMS & POLICY)
+        // ==========================================
+        function navigateTo(page) {
+            window.location.hash = `/${page}`;
+        }
+
+        function closeOverlay() {
+            window.history.back();
+        }
+
+        function handleRoute() {
+            const hash = window.location.hash;
+            const termsOverlay = document.getElementById('terms-overlay');
+            const policyOverlay = document.getElementById('policy-overlay');
+
+            termsOverlay.classList.remove('active');
+            policyOverlay.classList.remove('active');
+
+            if (hash === '#/terms') {
+                termsOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else if (hash === '#/policy') {
+                policyOverlay.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
+            }
+            lucide.createIcons();
+        }
+
+        window.addEventListener('hashchange', handleRoute);
+        window.addEventListener('DOMContentLoaded', handleRoute);
     </script>
 </body>
 </html>
